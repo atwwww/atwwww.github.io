@@ -11,6 +11,14 @@
     <content type="html"><![CDATA[<hr><h3 id="数据流图—表示系统的逻辑"><a href="#数据流图—表示系统的逻辑" class="headerlink" title="数据流图—表示系统的逻辑"></a>数据流图—表示系统的逻辑</h3><p>特点：箭头上标明数据流<br><img src="/img/DFD.png" width = "50%"></p><h3 id="ER图—概念模型"><a href="#ER图—概念模型" class="headerlink" title="ER图—概念模型"></a>ER图—概念模型</h3><img src="/img/er.png" width = "50%"><h3 id="状态转化图—对软件的行为建模"><a href="#状态转化图—对软件的行为建模" class="headerlink" title="状态转化图—对软件的行为建模"></a>状态转化图—对软件的行为建模</h3><img src="/img/state_diagram.png" width = "50%"><h3 id="层次方框图—自顶向下的描述数据结构"><a href="#层次方框图—自顶向下的描述数据结构" class="headerlink" title="层次方框图—自顶向下的描述数据结构"></a>层次方框图—自顶向下的描述数据结构</h3><img src="/img/layer.png" width = "50%"><h3 id="warnier图—表示信息层次结构"><a href="#warnier图—表示信息层次结构" class="headerlink" title="warnier图—表示信息层次结构"></a>warnier图—表示信息层次结构</h3><img src="/img/warnier.png" width = "50%"><h3 id="ipo图—输入数据、数据处理、输出数据的关系"><a href="#ipo图—输入数据、数据处理、输出数据的关系" class="headerlink" title="ipo图—输入数据、数据处理、输出数据的关系"></a>ipo图—输入数据、数据处理、输出数据的关系</h3><img src="/img/ipo.png" width = "50%">]]></content>
     
     
+    <categories>
+      
+      <category>学习总结</category>
+      
+      <category>软件工程</category>
+      
+    </categories>
+    
     
     <tags>
       
@@ -29,6 +37,14 @@
     
     <content type="html"><![CDATA[<h1 id="helloworld"><a href="#helloworld" class="headerlink" title="helloworld"></a><center>helloworld</center></h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    std::cout &lt;&lt; <span class="hljs-string">&quot;hello world&quot;</span> &lt;&lt; std::endl;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>]]></content>
     
+    
+    <categories>
+      
+      <category>Code</category>
+      
+      <category>C++</category>
+      
+    </categories>
     
     
     <tags>
