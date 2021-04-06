@@ -4,6 +4,35 @@
   
   
   <entry>
+    <title>分布式学习</title>
+    <link href="/2021/04/06/%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%A6%E4%B9%A0/"/>
+    <url>/2021/04/06/%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%A6%E4%B9%A0/</url>
+    
+    <content type="html"><![CDATA[<h1 id="分布式通信技术—Java中的Socket"><a href="#分布式通信技术—Java中的Socket" class="headerlink" title="分布式通信技术—Java中的Socket"></a><center>分布式通信技术—Java中的Socket</center></h1><h2 id="1-基于tcp的点对点通信技术"><a href="#1-基于tcp的点对点通信技术" class="headerlink" title="1.基于tcp的点对点通信技术"></a>1.基于tcp的点对点通信技术</h2><p>服务端：                                            客户端<br>            创建套接字（socket）<br>            绑定服务器地址和端口(bind)<br>            监听端口(listen)                                创建套接字<br>            接受客户端请求(accept)                        客户端发送请求<br>            回送响应(write)                                客户端接收响应<br>            关闭套接字(close)                                关闭套接字</p><p>在服务器端：：</p><p>监听socket<br>只负责三次握手的监听<br>创建成功的时候会生成一个握手成功队列。<br>将握手成功的客户端socket装进队列后，监听socket继续监听其他客户端</p><p>通信socket<br>Accept（）    —当握手成功队列不为空的时候从队列中取出一个成功的socket实现实际的传输<br>对于一个成功的socket，可以由此socket调用创建输入流和输出流的管道，让这个客户的socket可以发声，可以听声</p><p>InputStream -&gt;&gt;&gt; getInputStream</p><p>OutputStream -&gt;&gt;&gt; getOutputStream</p><p>InputStream是抽象管道，可以用InputStreamReader来包装，<br>可以用InputStreamReader 可以用 BuffereReader来包装</p><h2 id="2-基于udp的点对点通信技术"><a href="#2-基于udp的点对点通信技术" class="headerlink" title="2.基于udp的点对点通信技术"></a>2.基于udp的点对点通信技术</h2><p>2.1    DatagramSocket socket = new DatagraSocket();//通信用的socket</p><p>2.2    InetAddress ip = InetAddress.getByName(“127.0.0.1”);//获取ip地址</p><p>2.3    Int serverPort = 1234;</p><p>2.4 DatagramPacket packet = new DatagraPacket(字节数组，字节数组的长度，目标主机ip，目标主机端口);</p><p>2.4    aSocket.send(packet);//发送数据</p><p>2.5    aSocket.receive(buffer,buffer.length);</p><p>UDP技术发送的是一个一个数据包。<br>                先建立DatagramSocket通信<br>                再构造DatagramPacket 数据包<br>                使用DatagramSocket的send（数据包）函数将数据包发送<br>                使用DatagramSocket的receive（buffer，buffer.length）函数阻塞等待接收数据包<br>        Receive函数会让当前进程进入阻塞状态，直到接收到数据包为止;利用这一点，可以在接收到数据包的时候才创建一个线程来处理此数据包。</p><pre><code>在UDP模式下        客户端和服务端的接收和发送都是一样的。            </code></pre><p>UDP和TCP两者的宏观区别：</p><pre><code>UDP服务端实现多线程，一个socket兼具了接收信息和返回信息的功能。TCP服务端实现多线程，监听socket一直在监听握手连接。针对每个成功的握手，都有一个独特的socket与之对应。</code></pre><h2 id="3-什么是中间件？"><a href="#3-什么是中间件？" class="headerlink" title="3.什么是中间件？"></a>3.什么是中间件？</h2><p>硬件-&gt;操作系统-&gt;中间件-&gt;应用软件</p><p>中间件的作用：</p><ol><li>   为开发者提供编程抽象，屏蔽系统底层的异构和复杂</li><li>   提供高互操作性和可移植性</li><li>   提供分布式系统的基础设施服务</li></ol><p>常用中间件：<br>1）     Jvm<br>2）    远程过程调用中间件<br>3）    分布式对象中间件<br>4）    消息队列中间件<br>5）    Web服务中间件<br>6）    P2p中间件</p><p>Tcp/ip模型<br>    应用层<br>    传输层    （tcp/udp）<br>    网络层    （ip）<br>    接口层</p><h2 id="4-什么是socket？"><a href="#4-什么是socket？" class="headerlink" title="4.什么是socket？"></a>4.什么是socket？</h2><p>传输层和网络层提供应用层的标准化接口<br>分类：<br>流式套接字（tcp，双向，有建立通信管道，有发送成功的反馈）<br>数据报套接字（udp，一个包一个包的传送，没有发送成功的反馈）<br>原始套接字</p><p>五元组：<br>    源ip，源端口，目的ip，目的端口，协议（tcp+ip）</p><h2 id="5-Java多线程的实现"><a href="#5-Java多线程的实现" class="headerlink" title="5.Java多线程的实现"></a>5.Java多线程的实现</h2><p>5.1    多线程操作公共数据的代码（方法）都需要上锁</p><p>5.2    继承Thread类和实现Runnable接口的区别</p><p>继承Thread类的优点：<br>1）    需要使用一个工具类ToolClass来继承Thread，定义一系列数据。同时实现Thread中的run方法<br>2）    在main中直接创建ToolClass的实例，通过实例调用start（）方法来开启一个线程<br>3）    各个线程之间共享代码区，但是不共享存储区，即功能一样，但是数据不能实现交流</p><p>继承Thread类的缺点：<br>1）    线程之间数据不能共享<br>2）    ToolClass继承了Thread之后就不能继承其他的类了，这是java单继承限制的。</p><p>实现Runnable接口的优点：<br>1）    也是需要一个工具类ToolClass实现Runnable，定义一系列数据，实现其run方法<br>2）    在main中创建一个ToolClass的实例，将此实例作为参数传进一个<br>new Thread（）.start()中，开启线程。<br>3）    此时线程之间可以共享代码区和数据区，可以实现众多线程对同一个资源的抢夺使用。<br>4）    Runnable是接口，此时工具类ToolClass还可以继承其他类。</p><p>5.3    Synchronized性质<br>    1）锁，用来对临界区数据的访问控制</p><pre><code>2）synchronized释放只有两种情况：        a. 线程执行完毕，自动释放        b. 线程执行过程中出现异常，jvm让线程自动释放锁。</code></pre><p>3）    当synchronized修饰的代码块中有sleep或者等待输入等情况时，也不会释放资源，从而造成资源浪费。</p><p>4）    synchronized放在普通方法上，内置锁就是当前类的实例；放在静态方法上，内置锁就是当前类的class字节码对象。即synchronized加锁的是对象。</p><p>5.4    Lock性质<br>1）    锁，用来对临界数据的访问控制</p><p>2）    当获得锁的线程处于sleep或者输入等待的时候，Lock可以让当前线程等待一定时间，然后不管有没有执行完，都让出锁，让其他线程得以使用。</p><p>3）    对于读写问题，如果用synchronized则会让多个人同时读无法进行。使用Lock机制，也可以设置一个比较好的解决方法。</p><p>5.5    基于多线程实现并发的缺点</p><ol><li>   每个请求都会被一个新的线程处理，效率比较低</li><li>   对线程的数量不加控制，操作系统要花大量的时间来切换线程，使得线程处理周期变长。</li></ol><h2 id="6-基于线程池的并发服务技术"><a href="#6-基于线程池的并发服务技术" class="headerlink" title="6.基于线程池的并发服务技术"></a>6.基于线程池的并发服务技术</h2><p>6.1    Java中线程池的执行过程：<br>1）    使用ThreadPoolExecutor来实例化一个线程池，可以指定线程池的核心线程数量和线程总数量，以及最长等待时间。也可以将核心线程设置为可被清除的。<br>2）    线程池维护核心线程存活是依靠阻塞来实现的，线程池维护一个任务队列，可以设置任务队列的长度。<br>3）    线程池中使用线程的时候，先创建核心线程，这个时期即便有空闲的核心线程在，任务来了也会继续创建核心线程。<br>4）    核心线程创建完毕之后，再来任务开始进入任务队列。在任务队列没满之前不会创建普通线程。<br>5）    任务队列满了之后，再来任务，开始创建普通线程来帮助处理任务。<br>6）    在队列已满，并且没有空闲线程可以使用的时候就会抛出异常，或者对新进的任务不予处理。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>学习总结</category>
+      
+      <category>分布式</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>分布式</tag>
+      
+      <tag>java</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>linux网络编程学习（一）</title>
     <link href="/2021/04/04/linux%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E5%AD%A6%E4%B9%A0/"/>
     <url>/2021/04/04/linux%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E5%AD%A6%E4%B9%A0/</url>
