@@ -18,7 +18,7 @@
   <meta name="author" content="WAT">
   <meta name="keywords" content="">
   
-  <title>需求分析阶段可能用到的图 - Novice</title>
+  <title>模拟堆栈 - Novice</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -164,7 +164,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="需求分析阶段可能用到的图">
+            <span class="h2" id="subtitle" title="模拟堆栈">
               
             </span>
 
@@ -174,8 +174,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-03-31 08:52" pubdate>
-        2021年3月31日 早上
+      <time datetime="2021-04-07 16:46" pubdate>
+        2021年4月7日 下午
       </time>
     </span>
   
@@ -186,7 +186,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      83 字
+      193 字
     </span>
   
 
@@ -196,7 +196,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      1
+      3
        分钟
     </span>
   
@@ -226,20 +226,12 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">需求分析阶段可能用到的图</h1>
+            <h1 style="display: none">模拟堆栈</h1>
             
             <div class="markdown-body">
-              <hr>
-<h3 id="数据流图—表示系统的逻辑"><a href="#数据流图—表示系统的逻辑" class="headerlink" title="数据流图—表示系统的逻辑"></a>数据流图—表示系统的逻辑</h3><p>特点：箭头上标明数据流<br><img src="/img/DFD.png" srcset="/img/loading.gif" lazyload width = "50%"></p>
-<h3 id="ER图—概念模型"><a href="#ER图—概念模型" class="headerlink" title="ER图—概念模型"></a>ER图—概念模型</h3><img src="/img/er.png" srcset="/img/loading.gif" lazyload width = "50%">
-
-<h3 id="状态转化图—对软件的行为建模"><a href="#状态转化图—对软件的行为建模" class="headerlink" title="状态转化图—对软件的行为建模"></a>状态转化图—对软件的行为建模</h3><img src="/img/state_diagram.png" srcset="/img/loading.gif" lazyload width = "50%">
-
-<h3 id="层次方框图—自顶向下的描述数据结构"><a href="#层次方框图—自顶向下的描述数据结构" class="headerlink" title="层次方框图—自顶向下的描述数据结构"></a>层次方框图—自顶向下的描述数据结构</h3><img src="/img/layer.png" srcset="/img/loading.gif" lazyload width = "50%">
-
-<h3 id="warnier图—表示信息层次结构"><a href="#warnier图—表示信息层次结构" class="headerlink" title="warnier图—表示信息层次结构"></a>warnier图—表示信息层次结构</h3><img src="/img/warnier.png" srcset="/img/loading.gif" lazyload width = "50%">
-
-<h3 id="ipo图—输入数据、数据处理、输出数据的关系"><a href="#ipo图—输入数据、数据处理、输出数据的关系" class="headerlink" title="ipo图—输入数据、数据处理、输出数据的关系"></a>ipo图—输入数据、数据处理、输出数据的关系</h3><img src="/img/ipo.png" srcset="/img/loading.gif" lazyload width = "50%">
+              <p>问题描述:<br>    编写一个程序模拟堆栈，要求能够模拟、入栈、出栈、返回栈顶元素等基本操作。栈中元素可用整数代替。</p>
+<p>代码：(堆栈实现代码)</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">stack</span>&#123;</span><br>	<span class="hljs-keyword">int</span>* arr = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[MAX_SIZE];<br>	<span class="hljs-keyword">int</span> stack_top = <span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">int</span> length = MAX_SIZE;<br>	<span class="hljs-keyword">int</span> mul = <span class="hljs-number">1</span>;	<span class="hljs-comment">//扩充系数，</span><br><br>	<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">push</span><span class="hljs-params">(<span class="hljs-keyword">int</span> e)</span> </span>&#123;<br>		<span class="hljs-comment">//先判断堆栈是否满了，如果满了则需重新分配空间</span><br>		<span class="hljs-keyword">if</span> (stack_top &gt; length)<br>		&#123;<br>			length = (mul+<span class="hljs-number">2</span>) * MAX_SIZE * <span class="hljs-built_in"><span class="hljs-keyword">sizeof</span></span>(<span class="hljs-keyword">int</span>);<br>			arr = (<span class="hljs-keyword">int</span>*)<span class="hljs-built_in">realloc</span>(arr, length);<br>		&#125;<br>		*(arr + (stack_top++)) = e;<br>	&#125;<br><br>	<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">top</span><span class="hljs-params">()</span> </span>&#123;<br>		<span class="hljs-keyword">if</span> (stack_top &lt;= <span class="hljs-number">0</span>)<br>		&#123;<br>			std::cout &lt;&lt; <span class="hljs-string">&quot;error ! stack has nothing!&quot;</span> &lt;&lt; std::endl;<br>			<span class="hljs-built_in">exit</span>(<span class="hljs-number">-1</span>);<br>		&#125;<br>		<span class="hljs-keyword">return</span> *(arr + stack_top - <span class="hljs-number">1</span>);<br>	&#125;<br><br>	<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">pop</span><span class="hljs-params">()</span> </span>&#123;<br>		<span class="hljs-keyword">if</span> (stack_top &lt;= <span class="hljs-number">0</span>)<br>		&#123;<br>			std::cout &lt;&lt; <span class="hljs-string">&quot;error ! stack has nothing!&quot;</span> &lt;&lt; std::endl;<br>			<span class="hljs-built_in">exit</span>(<span class="hljs-number">-1</span>);<br>		&#125;<br>		stack_top--;<br>	&#125;<br><br>	<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">size</span><span class="hljs-params">()</span> </span>&#123;<br>		<span class="hljs-keyword">return</span> stack_top;<br>	&#125;<br>	<span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">isEmpty</span><span class="hljs-params">()</span> </span>&#123;<br>		<span class="hljs-keyword">return</span> stack_top &lt;= <span class="hljs-number">0</span>;<br>	&#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
             </div>
             <hr>
             <div>
@@ -248,9 +240,9 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/">学习总结</a>
+                      <a class="hover-with-bg" href="/categories/Code/">Code</a>
                     
-                      <a class="hover-with-bg" href="/categories/%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">软件工程</a>
+                      <a class="hover-with-bg" href="/categories/Code/%E7%AE%97%E6%B3%95%E9%A2%98/">算法题</a>
                     
                   </div>
                 
@@ -258,7 +250,9 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">软件工程</a>
+                      <a class="hover-with-bg" href="/tags/C/">C++</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
                     
                   </div>
                 
@@ -275,15 +269,21 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/04/04/linux%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E5%AD%A6%E4%B9%A0/">
+                      <a href="/2021/04/08/quick_sort/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">linux网络编程学习（一）</span>
+                        <span class="hidden-mobile">快速排序</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </article>
                   <article class="post-next col-6">
                     
+                    
+                      <a href="/2021/04/08/%E5%A4%A7%E6%95%B0%E7%9B%B8%E5%8A%A0%E5%87%8F/">
+                        <span class="hidden-mobile">大数相加减</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
                     
                   </article>
                 </div>

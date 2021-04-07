@@ -18,7 +18,7 @@
   <meta name="author" content="WAT">
   <meta name="keywords" content="">
   
-  <title>分布式学习 - Novice</title>
+  <title>分布式学习&lt;一&gt; - Novice</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -164,7 +164,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="分布式学习">
+            <span class="h2" id="subtitle" title="分布式学习<一>">
               
             </span>
 
@@ -196,7 +196,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      19
+      18
        分钟
     </span>
   
@@ -226,7 +226,7 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">分布式学习</h1>
+            <h1 style="display: none">分布式学习&lt;一&gt;</h1>
             
             <div class="markdown-body">
               <h1 id="分布式通信技术—Java中的Socket"><a href="#分布式通信技术—Java中的Socket" class="headerlink" title="分布式通信技术—Java中的Socket"></a><center>分布式通信技术—Java中的Socket</center></h1><h2 id="1-基于tcp的点对点通信技术"><a href="#1-基于tcp的点对点通信技术" class="headerlink" title="1.基于tcp的点对点通信技术"></a>1.基于tcp的点对点通信技术</h2><p>服务端：                                            客户端<br>            创建套接字（socket）<br>            绑定服务器地址和端口(bind)<br>            监听端口(listen)                                创建套接字<br>            接受客户端请求(accept)                        客户端发送请求<br>            回送响应(write)                                客户端接收响应<br>            关闭套接字(close)                                关闭套接字</p>
@@ -262,27 +262,25 @@ TCP服务端实现多线程，监听socket一直在监听握手连接。针对�
 <p>Tcp/ip模型<br>    应用层<br>    传输层    （tcp/udp）<br>    网络层    （ip）<br>    接口层</p>
 <h2 id="4-什么是socket？"><a href="#4-什么是socket？" class="headerlink" title="4.什么是socket？"></a>4.什么是socket？</h2><p>传输层和网络层提供应用层的标准化接口<br>分类：<br>流式套接字（tcp，双向，有建立通信管道，有发送成功的反馈）<br>数据报套接字（udp，一个包一个包的传送，没有发送成功的反馈）<br>原始套接字</p>
 <p>五元组：<br>    源ip，源端口，目的ip，目的端口，协议（tcp+ip）</p>
-<h2 id="5-Java多线程的实现"><a href="#5-Java多线程的实现" class="headerlink" title="5.Java多线程的实现"></a>5.Java多线程的实现</h2><p>5.1    多线程操作公共数据的代码（方法）都需要上锁</p>
-<p>5.2    继承Thread类和实现Runnable接口的区别</p>
-<p>继承Thread类的优点：<br>1）    需要使用一个工具类ToolClass来继承Thread，定义一系列数据。同时实现Thread中的run方法<br>2）    在main中直接创建ToolClass的实例，通过实例调用start（）方法来开启一个线程<br>3）    各个线程之间共享代码区，但是不共享存储区，即功能一样，但是数据不能实现交流</p>
+<h2 id="5-Java多线程的实现"><a href="#5-Java多线程的实现" class="headerlink" title="5.Java多线程的实现"></a>5.Java多线程的实现</h2><h3 id="5-1多线程操作公共数据的代码（方法）都需要上锁"><a href="#5-1多线程操作公共数据的代码（方法）都需要上锁" class="headerlink" title="5.1多线程操作公共数据的代码（方法）都需要上锁"></a>5.1多线程操作公共数据的代码（方法）都需要上锁</h3><h3 id="5-2继承Thread类和实现Runnable接口的区别"><a href="#5-2继承Thread类和实现Runnable接口的区别" class="headerlink" title="5.2继承Thread类和实现Runnable接口的区别"></a>5.2继承Thread类和实现Runnable接口的区别</h3><p>继承Thread类的优点：<br>1）    需要使用一个工具类ToolClass来继承Thread，定义一系列数据。同时实现Thread中的run方法<br>2）    在main中直接创建ToolClass的实例，通过实例调用start（）方法来开启一个线程<br>3）    各个线程之间共享代码区，但是不共享存储区，即功能一样，但是数据不能实现交流</p>
 <p>继承Thread类的缺点：<br>1）    线程之间数据不能共享<br>2）    ToolClass继承了Thread之后就不能继承其他的类了，这是java单继承限制的。</p>
 <p>实现Runnable接口的优点：<br>1）    也是需要一个工具类ToolClass实现Runnable，定义一系列数据，实现其run方法<br>2）    在main中创建一个ToolClass的实例，将此实例作为参数传进一个<br>new Thread（）.start()中，开启线程。<br>3）    此时线程之间可以共享代码区和数据区，可以实现众多线程对同一个资源的抢夺使用。<br>4）    Runnable是接口，此时工具类ToolClass还可以继承其他类。</p>
-<p>5.3    Synchronized性质<br>    1）锁，用来对临界区数据的访问控制</p>
-<pre><code>2）synchronized释放只有两种情况：
+<h3 id="5-3Synchronized性质"><a href="#5-3Synchronized性质" class="headerlink" title="5.3Synchronized性质"></a>5.3Synchronized性质</h3><pre><code>1）锁，用来对临界区数据的访问控制
+
+2）synchronized释放只有两种情况：
         a. 线程执行完毕，自动释放
         b. 线程执行过程中出现异常，jvm让线程自动释放锁。
 </code></pre>
 <p>3）    当synchronized修饰的代码块中有sleep或者等待输入等情况时，也不会释放资源，从而造成资源浪费。</p>
 <p>4）    synchronized放在普通方法上，内置锁就是当前类的实例；放在静态方法上，内置锁就是当前类的class字节码对象。即synchronized加锁的是对象。</p>
-<p>5.4    Lock性质<br>1）    锁，用来对临界数据的访问控制</p>
+<h3 id="5-4Lock性质"><a href="#5-4Lock性质" class="headerlink" title="5.4Lock性质"></a>5.4Lock性质</h3><p>1）    锁，用来对临界数据的访问控制</p>
 <p>2）    当获得锁的线程处于sleep或者输入等待的时候，Lock可以让当前线程等待一定时间，然后不管有没有执行完，都让出锁，让其他线程得以使用。</p>
 <p>3）    对于读写问题，如果用synchronized则会让多个人同时读无法进行。使用Lock机制，也可以设置一个比较好的解决方法。</p>
-<p>5.5    基于多线程实现并发的缺点</p>
-<ol>
+<h3 id="5-5基于多线程实现并发的缺点"><a href="#5-5基于多线程实现并发的缺点" class="headerlink" title="5.5基于多线程实现并发的缺点"></a>5.5基于多线程实现并发的缺点</h3><ol>
 <li>   每个请求都会被一个新的线程处理，效率比较低</li>
 <li>   对线程的数量不加控制，操作系统要花大量的时间来切换线程，使得线程处理周期变长。</li>
 </ol>
-<h2 id="6-基于线程池的并发服务技术"><a href="#6-基于线程池的并发服务技术" class="headerlink" title="6.基于线程池的并发服务技术"></a>6.基于线程池的并发服务技术</h2><p>6.1    Java中线程池的执行过程：<br>1）    使用ThreadPoolExecutor来实例化一个线程池，可以指定线程池的核心线程数量和线程总数量，以及最长等待时间。也可以将核心线程设置为可被清除的。<br>2）    线程池维护核心线程存活是依靠阻塞来实现的，线程池维护一个任务队列，可以设置任务队列的长度。<br>3）    线程池中使用线程的时候，先创建核心线程，这个时期即便有空闲的核心线程在，任务来了也会继续创建核心线程。<br>4）    核心线程创建完毕之后，再来任务开始进入任务队列。在任务队列没满之前不会创建普通线程。<br>5）    任务队列满了之后，再来任务，开始创建普通线程来帮助处理任务。<br>6）    在队列已满，并且没有空闲线程可以使用的时候就会抛出异常，或者对新进的任务不予处理。</p>
+<h2 id="6-基于线程池的并发服务技术"><a href="#6-基于线程池的并发服务技术" class="headerlink" title="6.基于线程池的并发服务技术"></a>6.基于线程池的并发服务技术</h2><h3 id="6-1Java中线程池的执行过程："><a href="#6-1Java中线程池的执行过程：" class="headerlink" title="6.1Java中线程池的执行过程："></a>6.1Java中线程池的执行过程：</h3><p>1）    使用ThreadPoolExecutor来实例化一个线程池，可以指定线程池的核心线程数量和线程总数量，以及最长等待时间。也可以将核心线程设置为可被清除的。<br>2）    线程池维护核心线程存活是依靠阻塞来实现的，线程池维护一个任务队列，可以设置任务队列的长度。<br>3）    线程池中使用线程的时候，先创建核心线程，这个时期即便有空闲的核心线程在，任务来了也会继续创建核心线程。<br>4）    核心线程创建完毕之后，再来任务开始进入任务队列。在任务队列没满之前不会创建普通线程。<br>5）    任务队列满了之后，再来任务，开始创建普通线程来帮助处理任务。<br>6）    在队列已满，并且没有空闲线程可以使用的时候就会抛出异常，或者对新进的任务不予处理。</p>
 
             </div>
             <hr>
@@ -320,6 +318,12 @@ TCP服务端实现多线程，监听socket一直在监听握手连接。针对�
                 <div class="post-prevnext">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2021/04/08/%E5%A4%A7%E6%95%B0%E7%9B%B8%E5%8A%A0%E5%87%8F/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">大数相加减</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
